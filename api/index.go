@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"github.com/gofiber/adaptor/v2"
 	"github.com/gofiber/fiber/v2"
 	"log"
@@ -10,6 +11,8 @@ import (
 func Handler(w http.ResponseWriter, r *http.Request) {
 	log.Println(r.URL.String())
 	log.Println(r.URL.Path)
+	fmt.Println(r.URL.String())
+	fmt.Println(r.URL.Path)
 	handler().ServeHTTP(w, r)
 }
 
