@@ -7,11 +7,29 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	adaptor.FiberHandler(greet).ServeHTTP(w, r)
+	handler().ServeHTTP(w, r)
 }
 
-func greet(c *fiber.Ctx) error {
-	return c.JSON(fiber.Map{
-		"success": true,
+func handler() http.HandlerFunc {
+	app := fiber.New()
+
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		return ctx.JSON(fiber.Map{
+			"version": "root",
+		})
 	})
+
+	app.Get("/v1", func(ctx *fiber.Ctx) error {
+		return ctx.JSON(fiber.Map{
+			"version": "v1",
+		})
+	})
+
+	app.Get("/v2", func(ctx *fiber.Ctx) error {
+		return ctx.JSON(fiber.Map{
+			"version": "v2",
+		})
+	})
+
+	return adaptor.FiberApp(app)
 }
