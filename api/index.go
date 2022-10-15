@@ -9,6 +9,8 @@ import (
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	log.Println(r.RequestURI)
+	log.Println(r.URL.String())
+	r.RequestURI = r.URL.String()
 	handler().ServeHTTP(w, r)
 }
 
