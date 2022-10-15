@@ -15,7 +15,7 @@ func handler() http.HandlerFunc {
 
 	app.Get("/", func(ctx *fiber.Ctx) error {
 		return ctx.JSON(fiber.Map{
-			"version": "root",
+			"version": ctx.OriginalURL(),
 		})
 	})
 
