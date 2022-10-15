@@ -3,10 +3,12 @@ package handler
 import (
 	"github.com/gofiber/adaptor/v2"
 	"github.com/gofiber/fiber/v2"
+	"log"
 	"net/http"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
+	log.Println(r.RequestURI)
 	handler().ServeHTTP(w, r)
 }
 
