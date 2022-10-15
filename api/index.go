@@ -7,7 +7,7 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	adaptor.FiberHandler(greet)(w, r)
+	adaptor.FiberHandler(greet).ServeHTTP(w, r)
 }
 
 func greet(c *fiber.Ctx) error {
